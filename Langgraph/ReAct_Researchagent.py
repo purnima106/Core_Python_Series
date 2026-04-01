@@ -17,7 +17,7 @@ import requests
 def search_web(query:str) -> str:
     """search the web for information"""
     from tavily import TavilyClient
-    client = TavilyClient(api_key="")
+    client = TavilyClient(api_key="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")
     result = client.search(query)
     return str(result)
 
