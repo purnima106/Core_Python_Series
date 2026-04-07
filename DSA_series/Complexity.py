@@ -40,9 +40,10 @@ while n > 1:
 
 #Recursion O(n)
 
-n = 16
 def func(n):
     if n == 0:
-        return 
+        return
     print(n)
-    func(n - 1)
+    func(n-1)
+
+func(3)
