@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-# from app.graph import app_graph
+from app.graph.graph import app_graph
 from dotenv import load_dotenv
 import os
 
@@ -20,9 +20,8 @@ def query(input: str):
     This will later connect to LangGraph
     For now → simple placeholder
     """
-    
+    result = app_graph.invoke({"input": input})
     # Temporary response
     return {
-        "input": input,
-        "response": f"Received your query: {input}"
+        "response": f"Result: {input}"
     }
