@@ -1,14 +1,13 @@
-from langchain_google_genai import ChatGoogleGenerativeAI
-import os
+from langchain_openai import ChatOpenAI
 
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash",api_key=os.getenv("GEMINI_API_KEY"))
+llm = ChatOpenAI(model="gpt-4o-mini")
 
 def orchestrator(state):
-    """Decides how to handle the query.
+    """
+    Decides how to handle the query.
     (For now → simple response, later → routing)
     """
-
     user_input = state["input"]
-    response = llm.invoke(f"Answer this: {user_input}").content
+
+    response = llm.invoke(f"You are a helpful assistant. User: {user_input}").content
     return {"output": response}
-    
