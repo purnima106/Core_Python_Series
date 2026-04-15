@@ -17,3 +17,22 @@ Don’t use Type 1 when:
 
 ❌ You need history
 ❌ You want to track changes over time
+
+#Type 2 and 3- “History” & “Previous Value” in SCD
+*History= Full change tracking/all past versions of a record are stored
+
+Example:Customer lived in Mumbai before
+Then moved to Pune
+-This is used in SCD Type 2
+
+Previous Value (Only Last Value)
+
+*Previous value = you keep just one old value (not full history)
+Use Type 3:
+You need only last change
+You know:
+
+Current = Pune
+Just the last value = Mumbai
+
+❌ But you don’t know anything older than that
