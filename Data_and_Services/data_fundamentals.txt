@@ -1,0 +1,19 @@
+#Data related notes
+dimensions holds all the contextual data/descriptive information or data
+for eg cust_name,prod_name,etc but these values changes overtime.
+these changes are handled by Slowly Changing dimensions
+
+#Type 1 SCD (Overwrite / Upsert)-Just overwrite the old data with the new data (no history)
+Upsert = Update + Insert
+
+Real-world Examples
+Fixing spelling mistakes in names
+Updating incorrect email
+Latest product price (if history not needed)
+
+When NOT to Use It
+
+Don’t use Type 1 when:
+
+❌ You need history
+❌ You want to track changes over time
