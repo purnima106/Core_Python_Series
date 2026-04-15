@@ -84,3 +84,91 @@ Real Pipeline Example
 App Data → Data Lake (S3) → Processing → Warehouse (Snowflake)
                        ↓
                   Lakehouse (Databricks)
+
+File Formats (Row based and Column based)
+
+Feature	        Row-Based 🔴	Column-Based 🟢
+Storage style	Row-wise	Column-wise
+Best for	    Transactions	Analytics
+Query type	    SELECT *	SELECT few cols
+Speed (analytics)	❌ Slower	✅ Faster
+Compression	    ❌ Less	✅ High
+
+*Parquet is a
+
+column-based file format designed for fast analytics
+
+It’s mainly used in:
+
+Data lakes (like S3)
+Big data systems
+Data warehouses
+
+Where You See It in Real World:
+
+-Amazon S3 → store Parquet files
+-AWS Glue → convert raw data → Parquet
+-Amazon Redshift → query Parquet via external tables
+
+typical pipeline: CSV/JSON (raw) → Glue → Parquet → S3 → Query (fast)
+
+*Delta Lake (Format): An open packet format which is built on the top of packet format and this acts as a transactional layer as well
+Delta Lake is: A smart layer on top of Parquet files that adds reliability, versioning, and database-like features.
+
+versioning: every change creates a new version of the table (Time Travel)
+
+What Delta Lake Adds (Super Important)
+1. ACID Transactions
+Safe writes
+No partial/corrupt data
+
+2. Upserts (MERGE)
+MERGE INTO table ...
+Just like SCD Type 1/2 pipelines
+
+3. Schema Enforcement
+Prevents bad data
+
+4. Time Travel
+Query old versions
+
+🧠 Real Pipeline Example
+Raw Data → Parquet → Delta Lake → Query (fast + reliable)
+
+Used with:Databricks, Spark
+
+🔥 Why Delta Lake Exists
+
+Because Parquet alone is not enough:
+
+Problem in Parquet	        Delta Lake Fix
+No versioning	            ✅ Version history
+No transactions	            ✅ ACID
+Hard updates	            ✅ MERGE support
+
+*Popular Data Engineering tools
+
+Kafka → real-time data streaming 📡
+Spark → data processing engine ⚙️
+Hive → SQL on big data 🧾
+Airflow → workflow scheduler ⏰
+Databricks → platform to run Spark easily 🚀
+
+*Architecture
+
+        (Upstream)
+   App / Logs / Sensors
+          ↓
+       Kafka  📡
+          ↓
+       Spark ⚙️   (via Databricks 🚀)
+          ↓
+     S3 / Delta Lake 📦
+          ↓
+   Hive / SQL Queries 🧾
+          ↓
+     Dashboard / BI 📊
+       
+   Airflow ⏰ (controls entire flow)
+
+
