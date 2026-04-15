@@ -171,4 +171,15 @@ Databricks → platform to run Spark easily 🚀
        
    Airflow ⏰ (controls entire flow)
 
+Distributed Computing with Spark: Distributed computing = splitting big data + work across multiple machines and processing it in parallel.
+
+basically there is driver node and worker nodes. Driver node orchestrate the work,dictributes it to the worker nodes. 
+Multiples worker nodes then execute the assigned work.
+All this happens inside a cluster.
+
+
+
+
+
+
 
