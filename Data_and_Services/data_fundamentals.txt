@@ -177,6 +177,18 @@ basically there is driver node and worker nodes. Driver node orchestrate the wor
 Multiples worker nodes then execute the assigned work.
 All this happens inside a cluster.
 
+Medallion Architecture: its a data design pattern used to logicaaly organize data in a data lakehouse.
+the goal here is to gradually improve the quality of the data and structure
+ data here flows through layer of architecture(Bronze-Silver-Gold).
+ This arch.. is also called as mutli-hop architectures.
+
+ pipeline:
+ data batches and streaming-> raw data(bronze layer)-> filtered,cleaned data(in silver)->Business-level aggregates(gold)-> BI and ML insights
+
+
+
+
+
 
 
 
