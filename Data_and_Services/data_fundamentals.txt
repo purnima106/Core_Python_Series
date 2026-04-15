@@ -36,3 +36,51 @@ Current = Pune
 Just the last value = Mumbai
 
 ❌ But you don’t know anything older than that
+
+A data warehouse = clean, organized, ready-to-use data
+
+Characteristics:
+Data is structured (tables, rows, columns)
+Already cleaned & transformed
+Fast for analytics (SQL queries)
+
+Real tools:
+Snowflake
+Amazon Redshift
+Google BigQuery
+
+A data lake = dump everything as-is
+
+Characteristics:
+Stores raw data
+Any format:
+JSON
+CSV
+images
+logs
+Not cleaned yet
+
+Real tools:
+Amazon S3
+Azure Data Lake
+
+A lakehouse = data lake + warehouse features
+
+Think of it like a smart home 🏡:
+
+Raw storage (like lake)
+Organized + fast queries (like warehouse)
+
+✅ Characteristics:
+Stores raw + structured data
+Supports SQL queries
+Adds schema + performance on top of lake
+
+🛠️ Real tools:
+Databricks
+Delta Lake
+
+Real Pipeline Example
+App Data → Data Lake (S3) → Processing → Warehouse (Snowflake)
+                       ↓
+                  Lakehouse (Databricks)
