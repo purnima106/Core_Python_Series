@@ -77,3 +77,24 @@
 # 👉 Time = O(n) (loop runs once)
 
 # 👉 Space = O(1) ✅ (very important)
+
+# nums = [3,2,3]
+
+# def majority(nums):
+#     count = {}
+
+#     for x in nums:
+#         if x in count:
+#             count[x] += 1
+#         else:
+#             count[x] = 1
+
+#     for key in count:
+#         if count[key] > len(nums) // 2:
+#             return key
+
+# print(majority([3,2,3]))
+
+# Complexity
+# Time → O(n)
+# Space → O(n)
