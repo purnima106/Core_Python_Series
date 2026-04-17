@@ -98,3 +98,20 @@
 # Complexity
 # Time → O(n)
 # Space → O(n)
+
+# Richest Customer Wealth
+
+def richest(accounts):
+    max_money = 0
+
+    for person in accounts:
+        total = sum(person)
+
+        if total > max_money:
+            max_money = total
+
+    return max_money
+
+
+print(richest([[1,2,3],[3,2,1]]))
+
