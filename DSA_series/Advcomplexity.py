@@ -55,11 +55,25 @@
 # 👉 Time = O(n)
 # 👉 Space = O(1) 
 
-n = 8
+# n = 8
 
-fib = [0, 1]
+# fib = [0, 1]
 
-for i in range(2, n):
-    fib.append(fib[i-1] + fib[i-2])
+# for i in range(2, n):
+#     fib.append(fib[i-1] + fib[i-2])
 
-print(fib)
+# print(fib)
+
+# space- O(n)
+
+# nums = [1, 2, 3, 4]
+
+# for i in range(1, len(nums)):
+#     nums[i] = nums[i] + nums[i - 1]
+# print(nums)
+
+# Complexity
+
+# 👉 Time = O(n) (loop runs once)
+
+# 👉 Space = O(1) ✅ (very important)
