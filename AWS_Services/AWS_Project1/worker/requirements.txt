@@ -1,0 +1,4 @@
+# Worker dependencies
+boto3
+pandas
+pyarrow
