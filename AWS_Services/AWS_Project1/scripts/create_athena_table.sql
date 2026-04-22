@@ -7,19 +7,18 @@
 -- Dataset : curated/sample_dataset/   (folder-based, NOT a single .parquet file)
 -- Format  : Parquet + Snappy compression
 
-CREATE EXTERNAL TABLE IF NOT EXISTS sample_dataset (
-    order_id           STRING,
-    order_item_id      BIGINT,
-    product_id         STRING,
-    seller_id          STRING,
-    shipping_limit_date STRING,
-    price              DOUBLE,
-    freight_value      DOUBLE,
-    processed          BOOLEAN
+CREATE EXTERNAL TABLE IF NOT EXISTS ecommerce_db.orders (
+    order_id STRING,
+    order_item_id BIGINT,
+    product_id STRING,
+    seller_id STRING,
+    price DOUBLE,
+    freight_value DOUBLE
+)
+PARTITIONED BY (
+    year STRING,
+    month STRING,
+    day STRING
 )
 STORED AS PARQUET
-LOCATION 's3://rag-ml-pipeline-bucket-purnima/curated/sample_dataset/'
-TBLPROPERTIES ('parquet.compress' = 'SNAPPY');
-
--- Verify with:
--- SELECT * FROM sample_dataset LIMIT 10;
+LOCATION 's3://rag-ml-pipeline-bucket-purnima/curated/orders/';
