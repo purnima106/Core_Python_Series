@@ -1,9 +1,10 @@
 # backend/upload.py
 # Handles file uploads to AWS S3
 
-from config import s3, BUCKET
+from config import S3_CLIENT, S3_BUCKET_NAME
 import pandas as pd
 import datetime
+import os
 
 def upload_file(file_path):
     df = pd.read_csv(file_path)
@@ -12,9 +13,12 @@ def upload_file(file_path):
 
     key = f"raw/year=2026/month=04/{timestamp}.csv"
 
-    s3.upload_file(file_path, BUCKET, key)
+    S3_CLIENT.upload_file(file_path, S3_BUCKET_NAME, key)
 
     print(f"Uploaded to {key}")
 
+
 if __name__ == "__main__":
-    upload_file("../data/sample.csv")
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    file_path = os.path.join(base_dir, "data", "sample.csv")
+    upload_file(file_path)

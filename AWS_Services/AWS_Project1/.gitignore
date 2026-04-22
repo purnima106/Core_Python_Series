@@ -1,0 +1,17 @@
+# Secrets — NEVER commit these
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+
+# AWS
+.aws/
+
+# Editor
+.vscode/
+.idea/
