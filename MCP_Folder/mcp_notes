@@ -1,0 +1,17 @@
+MCP Server = a system where our own tools (functions. APIs) are exposed to AI so AI can perform task automatically.
+
+Our tools, AI decides how to use it.
+
+MCP Architecture (simple):
+User → AI (ChatGPT / Agent) → MCP Server → Tool → Result → AI → User
+
+Components:
+User
+AI/Agent
+MCP server
+Tools
+
+MCP = expose tools
+AI = uses tools
+No control logic by developer
+
