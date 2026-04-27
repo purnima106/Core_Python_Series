@@ -5,6 +5,8 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from google.auth.transport.requests import Request
 from dotenv import load_dotenv
+import base64
+from email.mime.text import MIMEText
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env"))
 
@@ -44,3 +46,17 @@ class GmailService:
 
         messages = results.get("messages", [])
         return messages
+    
+def send_email(self, to: str, subject: str, body: str):
+        message = MIMEText(body)
+        message["to"] = to
+        message["subject"] = subject
+
+        send_message = (
+        self.service.users()
+        .messages()
+        .send(userId="me", body={"raw": raw})
+        .execute()
+    )
+
+    return {"status": "sent", "id": send_message["id"]}
