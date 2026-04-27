@@ -59,4 +59,23 @@ def send_email(self, to: str, subject: str, body: str):
         .execute()
     )
 
-    return {"status": "sent", "id": send_message["id"]}
+        return {"status": "sent", "id": send_message["id"]}
+
+
+def label_email(self, message_id: str, label_ids: list):
+    self.service.users().messages().modify(
+        userId="me",
+        id=message_id,
+        body={"addLabelIds": label_ids}
+    ).execute()
+
+    return {"status": "labeled"}
+
+def draft_reply(self, to: str, subject: str, body: str):
+    return {
+        "to": to,
+        "subject": subject,
+        "body": body,
+        "status": "draft"
+    }
+

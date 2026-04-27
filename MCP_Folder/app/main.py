@@ -11,6 +11,30 @@ def list_unread_emails(max_results: int = 5):
     emails = gmail.list_unread_emails(max_results)
     return emails   
 
+@mcp.tool()
+def send_email(to: str, subject: str, body: str):
+    """
+    Send an email via Gmail (use carefully)
+    """
+    return gmail.send_email(to, subject, body)
+
+
+
+@mcp.tool()
+def label_email(message_id: str, label_ids: list):
+    """
+    Add labels to an email
+    """
+    return gmail.label_email(message_id, label_ids)
+
+@mcp.tool()
+def draft_reply(to: str, subject: str, body: str):
+    """
+    Draft an email reply (safe, does not send)
+    """
+    return gmail.draft_reply(to, subject, body)
+
 if __name__ == "__main__":
     mcp.run()
+
 
