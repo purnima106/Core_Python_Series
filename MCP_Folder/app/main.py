@@ -34,6 +34,11 @@ def draft_reply(to: str, subject: str, body: str):
     """
     return gmail.draft_reply(to, subject, body)
 
+@mcp.resource("gmail://inbox")
+def get_inbox():
+    """Get current inbox emails."""
+    return gmail.list_unread_emails(10)
+
 if __name__ == "__main__":
     mcp.run()
 
