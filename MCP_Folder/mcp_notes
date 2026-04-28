@@ -42,3 +42,29 @@ You → Claude Desktop
    Tools / Resources / Prompts
         ↓
      Gmail API
+
+NOW prod practices:
+Production system adds:
+Reliability + Security + Scale + Observability
+
+Proper Architecture Upgrade
+
+Right now:
+
+Tool → Service → Gmail
+Production:
+Tool
+ ↓
+Controller layer
+ ↓
+Service layer
+ ↓
+External API
+ ↓
+Database / Cache
+
+Level	        What it means
+Basic	        works locally
+Intermediate	safe + structured
+Production	    multi-user + secure + scalable
+
