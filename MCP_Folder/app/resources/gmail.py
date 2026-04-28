@@ -1,8 +1,8 @@
 from fastmcp import FasrMCP
 from app.services.gmail_service import GmailService
 
-Gmail = GmailService()
+gmail = GmailService()
 
 def get_inbox():
 
-    return Gmail.list_unread_emails(10)
+    return gmail.list_unread_emails(10)

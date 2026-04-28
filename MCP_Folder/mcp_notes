@@ -24,3 +24,21 @@ instead of calling list_unread_emails
 
 AI can just read:
 gmail://inbox
+
+
+#Table:
+Component	    Role
+Tools	        do actions
+Resources	    provide data
+Prompts	        guide AI
+
+
+Final Architecture
+
+You → Claude Desktop
+        ↓
+     MCP Server
+        ↓
+   Tools / Resources / Prompts
+        ↓
+     Gmail API

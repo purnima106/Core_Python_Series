@@ -1,3 +1,4 @@
+from app.prompts.triage import TRIAGE_PROMPT
 from fastmcp import FastMCP
 from app.services.gmail_service import GmailService
 
@@ -35,9 +36,13 @@ def draft_reply(to: str, subject: str, body: str):
     return gmail.draft_reply(to, subject, body)
 
 @mcp.resource("gmail://inbox")
-def get_inbox():
+def inbox_resource():
     """Get current inbox emails."""
     return gmail.list_unread_emails(10)
+
+@mcp.prompt()
+def triage_inbox():
+    return TRIAGE_PROMPT
 
 if __name__ == "__main__":
     mcp.run()
