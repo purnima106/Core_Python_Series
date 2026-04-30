@@ -1,0 +1,9 @@
+customer_id,name,age,city
+1,Amit,25,Mumbai
+2,Neha,30,Delhi
+3,Rahul,22,Bangalore
+4,Priya,28,Mumbai
+5,Ankit,35,Delhi
+6,Sneha,,Mumbai
+7,Rohit,40,Pune
+8,Kavya,27,Bangalore
