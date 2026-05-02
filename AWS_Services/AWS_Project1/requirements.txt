@@ -1,0 +1,6 @@
+# Root-level project dependencies
+boto3
+pandas
+streamlit
+pyarrow
+python-dotenv

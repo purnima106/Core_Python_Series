@@ -1,0 +1,52 @@
+Pyspark is the py api for apache spark for big data processing and analytics.
+
+it gives  powerful distributed computing to efficiently process large datasets across clusters.
+
+widely used in data analysis, machine learning and real-time processing.
+
+PySpark = Python + Apache Spark
+
+Apache Spark is a powerful engine used to process huge amounts of data (think GBs, TBs, even PBs).
+PySpark is just a way to use that engine using Python instead of Scala/Java.
+
+How pyspark works:
+1. Drivers and Workers
+2. Distributed processing
+
+Instead of:
+
+Process all data on 1 machine ❌
+
+PySpark does:
+
+Split data → process on many machines → combine result ✅
+
+Core Components of PySpark
+1. SparkSession(Entry Point)
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("MyApp").getOrCreate()
+
+2. Data Structures
+RDD
+DataFrame
+Dataset
+
+Tyoes of Operations
+
+1. Transformations (lazy)
+2. Actions(trigger execution)
+
+Where it is used:
+Big Data Processing
+Data Engineering
+Real time streaming
+
+🔹 Types of PySpark Workloads
+1. Batch Processing
+Process data in chunks (daily jobs)
+2. Stream Processing
+Real-time data
+3. Interactive Queries
+Ad-hoc analysis
+

@@ -1,0 +1,6 @@
+# Worker dependencies
+boto3
+pandas
+pyarrow
+s3fs
+python-dotenv

@@ -1,0 +1,21 @@
+AWS_Glue
+
+fully managed by ETL services by AWS
+
+It has 2 main features -Data Catalog and Spark ETL engine
+
+Data Catalog:
+persistent technical metadata store
+can connect to 70 diff sources and manage data-centralized data Catalog
+
+ETL Engine:
+visually create,run and monitor extract,transform and load ETL pipelines to load data into data lakes.
+Spark is inbuilt
+
+Databases
+tables
+(S3+Glue+Athena)
+Connections (Basically its connection configuration)
+AWS Glue ETL Jobs(ETL Job to transform data, leverages the power of spark,its serverless)
+Triggers
+
