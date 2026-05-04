@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import { API, apiCall } from './api'
 
 function App() {
   const [prUrl, setPrUrl] = useState('')
@@ -16,17 +17,12 @@ function App() {
     setError(null)
 
     try {
-      const response = await fetch('/api/review', {
+      // Use centralized API call with environment-based URL
+      // API.reviewPR uses VITE_API_URL from .env
+      const data = await apiCall(API.reviewPR, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pr_url: prUrl })
       })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.detail || 'Something went wrong')
-      }
 
       setReview(data.review)
     } catch (err) {
@@ -93,9 +89,53 @@ function App() {
               <span>✅</span> Review Complete
             </div>
             <div className="result__content">
-              {typeof review === 'string'
-                ? review
-                : JSON.stringify(review, null, 2)}
+              {typeof review === 'string' ? (
+                review
+              ) : (
+                <div className="review-sections">
+                  {/* Summary Section */}
+                  <div className="review-section">
+                    <h2 className="section-title">📋 Summary</h2>
+                    <p className="section-text">{review.summary || 'No summary available'}</p>
+                  </div>
+
+                  {/* Risk Section */}
+                  <div className="review-section">
+                    <h2 className="section-title">⚠️ Risk Level</h2>
+                    <p className={`risk-level risk-${review.risk?.toLowerCase() || 'unknown'}`}>
+                      {review.risk?.charAt(0).toUpperCase() + review.risk?.slice(1).toLowerCase() || 'Unknown'}
+                    </p>
+                  </div>
+
+                  {/* Issues Section */}
+                  <div className="review-section">
+                    <h2 className="section-title">🐛 Issues</h2>
+                    {review.issues && review.issues.length > 0 ? (
+                      <ul className="issues-list">
+                        {review.issues.map((issue, idx) => (
+                          <li key={idx} className="issue-item">{issue}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="no-items">No issues found</p>
+                    )}
+                  </div>
+
+                  {/* Suggestions Section */}
+                  <div className="review-section">
+                    <h2 className="section-title">💡 Suggestions</h2>
+                    {review.suggestions && review.suggestions.length > 0 ? (
+                      <ul className="suggestions-list">
+                        {review.suggestions.map((suggestion, idx) => (
+                          <li key={idx} className="suggestion-item">{suggestion}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="no-items">No suggestions</p>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
