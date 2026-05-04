@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+fastmcp
+httpx
+python-dotenv
+pydantic
+loguru
+groq

@@ -1,0 +1,13 @@
+[project]
+name = "smart-gmail-mcp"
+version = "0.1.0"
+dependencies = [
+    "fastmcp",
+    "google-api-python-client",
+    "google-auth",
+    "google-auth-oauthlib",
+    "pydantic",
+    "python-dotenv",
+    "loguru",
+    "tenacity",
+]
