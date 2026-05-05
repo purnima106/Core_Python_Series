@@ -1,0 +1,102 @@
+# 🚀 AWS EC2 Deployment Guide
+
+Follow these steps to deploy your **GitHub PR Reviewer** project to AWS and make it accessible from anywhere.
+
+---
+
+## 1. Prepare your EC2 Instance
+1.  **Launch Instance**: Go to the AWS EC2 Console and launch a new instance.
+    *   **AMI**: Amazon Linux 2023 or Ubuntu 22.04 LTS.
+    *   **Instance Type**: `t2.micro` (free tier) or `t3.small` (recommended for faster builds).
+2.  **Security Group**: Create a new Security Group and add these **Inbound Rules**:
+    *   **SSH**: Port 22 (from your IP).
+    *   **HTTP**: Port 80 (from **0.0.0.0/0** - This allows the world to see your site).
+    *   **Custom TCP**: Port 3000 (if you want to keep the current port, but we recommend port 80).
+
+---
+
+## 2. Install Docker on EC2
+Once you SSH into your instance (`ssh -i your-key.pem ec2-user@your-public-ip`), run these commands:
+
+```bash
+# Update system
+sudo yum update -y  # For Amazon Linux
+# sudo apt update && sudo apt upgrade -y # For Ubuntu
+
+# Install Docker
+sudo yum install docker -y
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# Give your user permission to run docker (re-login after this)
+sudo usermod -aG docker $USER
+
+# Install Docker Compose
+sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
+*Note: Log out and back in for the `usermod` to take effect.*
+
+---
+
+## 3. Transfer Code to EC2
+You can use Git (recommended) or SCP:
+
+### Option A: Via Git (Recommended)
+```bash
+git clone https://github.com/your-username/github_pr_reviewer.git
+cd github_pr_reviewer
+```
+
+---
+
+## 4. Set Environment Variables
+The `.env` file is ignored by Git, so you must create it manually on the server:
+
+```bash
+nano .env
+```
+Paste your keys:
+```dotenv
+GROQ_API_KEY=your_key_here
+GITHUB_TOKEN=your_token_here
+```
+*(Press `Ctrl+O`, `Enter`, `Ctrl+X` to save and exit)*
+
+---
+
+## 5. Optimize Docker Compose for AWS
+To make your app accessible on the standard web port (**80**) instead of **3000**, update your `docker-compose.yml`:
+
+```yaml
+  frontend:
+    ports:
+      - "80:80"  # Change this from "3000:80"
+```
+
+---
+
+## 6. Build and Deploy
+Run the magic command:
+```bash
+docker-compose up --build -d
+```
+
+---
+
+## 7. Get Your Link
+Your app is now live! You can access it via:
+
+`http://your-ec2-public-ipv4-address`
+
+### To get a custom domain (Optional)
+1.  Buy a domain (e.g., via Route 53 or Namecheap).
+2.  Create an **A Record** pointing to your EC2 Public IP.
+3.  Access your app via `http://yourdomain.com`.
+
+---
+
+## 🛠 Troubleshooting
+*   **Check Logs**: `docker-compose logs -f`
+*   **Container Status**: `docker ps`
+*   **Permissions**: If you get a "permission denied" for docker, ensure you ran the `usermod` command and **re-logged into SSH**.
