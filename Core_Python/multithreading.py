@@ -25,20 +25,29 @@
 # task()
 # task()
 
+#Race Condition
+#Race condition occurs when multiple threads access shared resources concurrently,
+#and the outcome depends on the unpredictable order in which threads execute.
+#To avoid race conditions, use locks to synchronize access to shared resources.
+
 import threading
-import time
 
-def task():
-    print("Start")
-    time.sleep(2)
-    print("End")
+counter = 0
 
-t1 = threading.Thread(target = task)
-t2 = threading.Thread(target = task)
+def increment():
+    global counter
+    for _ in range(5):
+        counter += 1
+        print(counter)
+
+t1 = threading.Thread(target=increment)
+t2 = threading.Thread(target=increment)
 
 t1.start()
 t2.start()
 
 t1.join()
 t2.join()
+
+print("Final Counter:", counter)
 
