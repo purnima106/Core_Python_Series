@@ -1,16 +1,50 @@
-# React + Vite
+# GitHub PR Reviewer - Frontend 🎨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive React interface for submitting GitHub Pull Requests for AI analysis and viewing the results.
 
-Currently, two official plugins are available:
+## 🛠️ Tech Stack
+- **React 19**: Using the latest features for UI components.
+- **Vite**: Ultra-fast build tool and development server.
+- **Vanilla CSS**: Custom-styled components with a premium aesthetic.
+- **Environment Based Config**: Centralized API management.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ⚙️ Setup & Installation
 
-## React Compiler
+### Local Development
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+2. **Configure Environment Variables**:
+   Create a `.env` file in the `client` directory:
+   ```env
+   VITE_API_URL=http://localhost:8000
+   ```
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+   The app will be available at `http://localhost:5173`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📦 Build & Production
+To build the application for production:
+```bash
+npm run build
+```
+The output will be in the `dist/` directory. In the Docker setup, these files are served by **Nginx**.
 
-## Expanding the ESLint configuration
+## 🧩 Key Components
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### `App.jsx`
+The main entry point that handles form submission, loading states, and rendering the review results. It utilizes a structured display for the AI's JSON response, categorizing feedback into Summary, Risk, Issues, and Suggestions.
+
+### `api.js`
+A centralized module for all API interactions. It ensures that the correct backend URL is used regardless of the environment (Local, Docker, or Production).
+
+## 🌍 Environment Variables
+- `VITE_API_URL`: The base URL of the FastAPI backend.
+  - Development: `http://localhost:8000`
+  - Production (Docker): `http://backend:8000` (internal network)
+
+---
+
