@@ -30,18 +30,43 @@
 #and the outcome depends on the unpredictable order in which threads execute.
 #To avoid race conditions, use locks to synchronize access to shared resources.
 
+# import threading
+
+# counter = 0
+
+# def increment():
+#     global counter
+#     for _ in range(5):
+#         counter += 1
+#         print(counter)
+
+# t1 = threading.Thread(target=increment)
+# t2 = threading.Thread(target=increment)
+
+# t1.start()
+# t2.start()
+
+# t1.join()
+# t2.join()
+
+# print("Final Counter:", counter)
+
 import threading
+import time
 
 counter = 0
 
 def increment():
     global counter
     for _ in range(5):
-        counter += 1
+        temp = counter
+        time.sleep(0.1)
+        temp += 1
+        counter = temp
         print(counter)
 
-t1 = threading.Thread(target=increment)
-t2 = threading.Thread(target=increment)
+t1 = threading.Thread(target = increment)
+t2 = threading.Thread(target = increment)
 
 t1.start()
 t2.start()
@@ -50,4 +75,6 @@ t1.join()
 t2.join()
 
 print("Final Counter:", counter)
+
+
 
