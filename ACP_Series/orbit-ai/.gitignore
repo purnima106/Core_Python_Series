@@ -1,0 +1,51 @@
+# Virtual Environment
+
+.venv/
+venv/
+env/
+
+# Python cache
+
+**pycache**/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+
+.env
+.env.*
+
+# IDE files
+
+.vscode/
+.idea/
+
+# OS files
+
+.DS_Store
+Thumbs.db
+
+# Logs
+
+*.log
+
+# Jupyter
+
+.ipynb_checkpoints/
+
+# LangChain / AI stuff (optional but recommended)
+
+*.sqlite3
+chroma_db/
+faiss_index/
+
+# API keys or secrets
+
+secrets.json
+config.yaml
+
+# Temporary files
+
+*.tmp
+*.bak
