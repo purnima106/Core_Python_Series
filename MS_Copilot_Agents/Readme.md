@@ -53,3 +53,94 @@ Use latest enterprise information
 Improve accuracy
 Use private company knowledge
 
+-------////////////////----------------------////////////////---------- 
+
+***Microsoft Copilot Studio Core Concepts***
+
+**1. Topics**: User goals or conversations.
+**2. Entities**: Extracted variables (names, dates, locations).
+**3. Variables**: Data storage for tracking context.
+**4. Nodes**: Building blocks (Message, Question, Action, Logic).
+**5. Trigger Phrases**: What starts a topic.
+**6. Intent**: What the user wants.
+**7. Dialog**: Conversation flow.
+**8. Session Variables**: Temporary storage per conversation.
+**9. Global Variables**: Store once for all users.
+**10. Plugins (Actions)**: Connect to APIs, Power Automate, Datasets.
+**11. AI Responses**: Natural language replies generated using LLM.
+**12. Fallback Topic**: When the bot doesn’t understand.
+**13. Transfer to Agent**: Handing over to a human.
+**14. Deployment Channels**: Teams, Slack, Web, Mobile apps.
+**15. Authentication**: Verifying user identity.
+**16. Version Control**: Saving copilot versions.
+**17. Analytics**: Monitoring usage and performance.
+**18. Testing Panel**: Building and debugging copilot conversations.
+**19. Input Capturing**: Collecting user responses.
+
+
+1. Topics: Topics are conversation modules handling specific intents.
+Each topic represents a conversation flow.
+Examples:
+Password reset topic
+Appointment booking topic
+Device troubleshooting topic
+Maintenance topic
+
+Topics_> Trigger Phrases, Conversation Paths, Branching, Fallback Topics
+
+2. Entities- Entities are structured pieces of information extracted from user input.
+
+Example:
+User: "Book MRI for John tomorrow"
+Extracted entities:
+Service = MRI
+Name = John
+Date = Tomorrow
+
+Types of Entities: Prebuilt, Custom, System Entities
+Prebuilt Entities
+Already available:
+Date
+Time
+Number
+Location
+Email
+
+Custom Entities
+Created specifically for enterprise use cases.
+Examples:
+Device ID
+Employee Code
+Hospital Department
+Ticket Priority
+
+System Entities
+Microsoft-defined entities
+Country Name
+City Name
+State Name
+
+Entities help:
+Extract structured information
+Understand requests
+Automate workflows
+Personalize responses
+
+3. Variables- Variables store information during conversations.
+They help maintain conversational state and memory.
+Variables enable:
+Context retention
+Follow-up conversations
+Personalization
+Workflow continuity
+
+Types of Variables:
+Session Variables: Last only for one conversation.
+Global Variables: Saved permanently across all conversations.
+
+Example Conversation:
+User: My name is John.
+Variable stored: name = John
+User: Schedule appointment tomorrow.
+The system remembers: User name = John
+
