@@ -144,3 +144,78 @@ Variable stored: name = John
 User: Schedule appointment tomorrow.
 The system remembers: User name = John
 
+4. Generative Answers-Generative Answers use LLMs to dynamically generate responses.Instead of fixed scripted replies, AI generates intelligent contextual responses.
+
+Traditional Chatbot
+IF user says X
+→ Return predefined response Y
+
+Generative AI Chatbot
+User Question
+ ↓
+Retrieve Context
+ ↓
+LLM Generates Response
+
+Benefits:
+Natural conversations
+Flexible responses
+Better user experience
+Reduced manual scripting
+
+Risks:
+Hallucinations
+Incorrect information
+Security concerns
+Therefore enterprises add:
+Guardrails
+Retrieval
+Validation
+Permissions
+
+5. Power Automate and Actions-> Actions- Actions allow AI agents to perform tasks instead of only chatting
+
+Examples:
+An agent can:
+Create support tickets
+Send emails
+Update databases
+Trigger workflows
+Schedule appointments
+Notify teams
+
+User Request
+ ↓
+AI Understands Intent
+ ↓
+Trigger Action
+ ↓
+Call API / Workflow
+↓
+Return Result
+
+Power Automate- Power Automate is Microsoft's workflow automation platform. It connects AI copilots with enterprise systems.
+
+Examples:
+
+Copilot can:
+Create Jira tickets
+Send Outlook emails
+Update SharePoint
+Trigger Teams notifications
+Call enterprise APIs
+
+Why Power Automate is Important
+This is what makes copilots "agentic".
+Without actions:
+chatbot only talks
+With actions:
+chatbot performs work
+
+6. Deployment and Publishing- 
+Publishing makes the copilot available to users.
+Deployment channels may include:
+Microsoft Teams
+Websites
+Internal portals
+Customer service systems
