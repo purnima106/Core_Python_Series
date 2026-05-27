@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Code') {
+            steps {
+                echo 'Cloning Repository...'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                bat 'docker build -t fastapi-cicd .'
+            }
+        }
+
+        stage('Stop Old Container') {
+            steps {
+                bat 'docker stop fastapi-container || exit 0'
+                bat 'docker rm fastapi-container || exit 0'
+            }
+        }
+
+        stage('Run New Container') {
+            steps {
+                bat 'docker run -d --name fastapi-container -p 8090:8000 fastapi-cicd'
+            }
+        }
+    }
+}
