@@ -24,4 +24,22 @@ TOPICS = [
     "Kubernetes Operators",
     "AI-Assisted DevOps",
     "Data Pipeline Infra",
+    "GitOps",
+    "ArgoCD",
+    "Terraform",
+    "Kubernetes",
+    "DevSecOps",
+    "Platform Engineering",
+    "MLOps",
+    "Observability",
+    "FinOps",
+    "SRE"
+]
+
+STYLES = [
+    "lesson_learned",
+    "hot_take",
+    "mistake_post",
+    "tool_comparison",
+    "trend_opinion"
 ]

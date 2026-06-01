@@ -1,5 +1,6 @@
+from datetime import datetime
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import Column, Integer, String, Text, DateTime
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -14,9 +15,19 @@ class Post(Base):
     __tablename__ = "posts"
 
     id = Column(Integer, primary_key=True)
+
     topic = Column(String)
+    style = Column(String)
+
     post_text = Column(Text)
+
     status = Column(String)
+
+    created_at = Column(
+        DateTime,
+        default=datetime.utcnow
+    )
 
 
 Base.metadata.create_all(engine)
+
