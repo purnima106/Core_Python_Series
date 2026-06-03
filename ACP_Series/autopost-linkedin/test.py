@@ -1,18 +1,20 @@
-from google import genai
-from dotenv import load_dotenv
-import os
+# pyrefly: ignore [missing-import]
+from playwright.sync_api import sync_playwright
 
-load_dotenv()
+with sync_playwright() as p:
 
-api_key = os.getenv("GEMINI_API_KEY")
+    browser = p.chromium.launch(headless=False)
 
-print("Loaded:", repr(api_key))
+    context = browser.new_context(
+        storage_state="linkedin_session.json"
+    )
 
-client = genai.Client(api_key=api_key)
+    page = context.new_page()
 
-response = client.models.generate_content(
-    model="gemini-2.0-flash",
-    contents="Hello"
-)
+    page.goto("https://www.linkedin.com/feed/")
 
-print(response.text)
+    page.wait_for_timeout(5000)
+
+    print("Loaded LinkedIn feed")
+
+    browser.close()

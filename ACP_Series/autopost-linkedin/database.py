@@ -27,6 +27,8 @@ class Post(Base):
         DateTime,
         default=datetime.utcnow
     )
+    linkedin_post_id = Column(String, nullable=True)
+    error_message = Column(Text, nullable=True)
 
 
 Base.metadata.create_all(engine)
