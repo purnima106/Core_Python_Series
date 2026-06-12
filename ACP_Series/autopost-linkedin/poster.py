@@ -4,41 +4,59 @@ from playwright.sync_api import sync_playwright
 
 def post_to_linkedin(post_text):
 
-    with sync_playwright() as p:
+    try:
 
-        browser = p.chromium.launch(
-            headless=False
-        )
+        with sync_playwright() as p:
 
-        context = browser.new_context(
-            storage_state="linkedin_session.json"
-        )
+            browser = p.chromium.launch(
+                headless=False
+            )
 
-        page = context.new_page()
+            context = browser.new_context(
+                storage_state="linkedin_session.json"
+            )
 
-        page.goto("https://www.linkedin.com/feed/")
+            page = context.new_page()
 
-        page.wait_for_timeout(5000)
+            page.goto(
+                "https://www.linkedin.com/feed/"
+            )
 
-        print("Opening post dialog...")
+            page.wait_for_timeout(5000)
 
-        page.locator(
-            '[aria-label="Start a post"]'
-        ).click()
+            page.locator(
+                '[aria-label="Start a post"]'
+            ).click()
 
-        page.wait_for_timeout(3000)
+            page.wait_for_timeout(3000)
 
-        page.keyboard.type(
-            post_text,
-            delay=20
-        )
+            page.keyboard.type(
+                post_text,
+                delay=20
+            )
 
-        print("Text inserted successfully")
+            page.wait_for_timeout(2000)
 
-        input("Verify the content and press Enter...")
+            page.get_by_role(
+                "button",
+                name="Post",
+                exact=True
+            ).click()
+            # print("Ready to click Post")
 
-        browser.close()
+            # input("Press Enter to publish...")
 
+            page.wait_for_timeout(5000)
+
+            browser.close()
+
+            return True
+
+    except Exception as e:
+
+        print(e)
+
+        return False
 
 if __name__ == "__main__":
     post_to_linkedin(

@@ -1,18 +1,17 @@
-import sys
+from poster import post_to_linkedin
 from generator import generate_post
+from database import SessionLocal, Post
+import sys
 
-from database import SessionLocal
-from database import Post
-
-# Reconfigure terminal encoding to UTF-8 on Windows to handle emojis correctly
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
-
 
 
 def run():
 
     topic, style, post = generate_post()
+
+    success = post_to_linkedin(post)
 
     db = SessionLocal()
 
@@ -20,7 +19,7 @@ def run():
         topic=topic,
         style=style,
         post_text=post,
-        status="generated"
+        status="posted" if success else "failed"
     )
 
     db.add(record)
@@ -28,6 +27,12 @@ def run():
 
     print("\nTOPIC\n")
     print(topic)
+
+    print("\nSTYLE\n")
+    print(style)
+
+    print("\nSTATUS\n")
+    print("posted" if success else "failed")
 
     print("\nPOST\n")
     print(post)

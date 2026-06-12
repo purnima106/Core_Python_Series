@@ -20,6 +20,9 @@ ENV/
 *.db-wal
 *.sqlite
 *.sqlite3
+__pycache__/
+*.pyc
+posts.db
 
 # IDE / Editor folders
 .vscode/
